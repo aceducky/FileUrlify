@@ -3,7 +3,8 @@ import { useState } from "react";
 import Card from "./components/Card";
 
 function Form({ files, setFiles, service, setService }) {
-  const [isValid,setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(false);
+
   function validateFiles(inputFiles) {
     const newFilesArray = [...inputFiles];
 
@@ -12,9 +13,11 @@ function Form({ files, setFiles, service, setService }) {
       return;
     }
 
-    const allFiles = service.supportsMultipleFiles ? [...files, ...newFilesArray] : newFilesArray;
+    const allFiles = service.supportsMultipleFiles
+      ? [...files, ...newFilesArray]
+      : newFilesArray;
 
-    if (allFiles.some(file => file.size > service.maxFileSize)) {
+    if (allFiles.some((file) => file.size > service.maxFileSize)) {
       alert(`Each file must be less than ${service.maxFileSize / (1024 * 1024)} MB`);
       return;
     }
@@ -31,15 +34,16 @@ function Form({ files, setFiles, service, setService }) {
   }
 
   return (
-    <div>
-      <form>
-        <label>
+    <div className="p-4">
+      <form className="flex flex-col space-y-4">
+        <label className="block">
           Select an upload service:
           <select
             onChange={(e) => setService(upload_services[e.target.value])}
             value={service.name}
+            className="mt-2 p-2 border rounded"
           >
-            {/* eslint-disable-next-line no-unused-vars */}
+            {/*eslint-disable-next-line no-unused-vars*/}
             {Object.entries(upload_services).map(([_, service]) => (
               <option key={service.name} value={service.name}>
                 {service.name}
@@ -49,8 +53,8 @@ function Form({ files, setFiles, service, setService }) {
         </label>
 
         {service.component && <service.component files={files} />}
-        
-        <label id="file-input-label">
+
+        <label className="block border-2 border-orange-400 relative max-w-[400px] w-[98vw] h-[200px]">
           Drop your files here or click this:
           <input
             type="file"
@@ -58,14 +62,20 @@ function Form({ files, setFiles, service, setService }) {
             id="file-input"
             multiple={service.supportsMultipleFiles}
             onChange={(e) => validateFiles(e.target.files)}
+            className="opacity-0 absolute inset-0"
           />
         </label>
-        
-       {isValid &&
-          <button type="button" id="upload-files-button" onClick={handleUpload}>
+
+        {isValid && (
+          <button
+            type="button"
+            id="upload-files-button"
+            onClick={handleUpload}
+            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
             Upload Files
-        </button>
-      }
+          </button>
+        )}
       </form>
 
       <Card files={files} setFiles={setFiles} />

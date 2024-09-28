@@ -8,7 +8,7 @@ function App() {
   const [service, setService] = useState(upload_services["file.io"]);
 
   return (
-    <div>
+    <div className="w-screen h-screen font-sans">
       <Form
         files={files}
         setFiles={setFiles}

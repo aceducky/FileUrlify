@@ -16,7 +16,6 @@ const upload_services = {
     maxExpiryTimeInfo: "365 days",
     component: FileIO,
     uploadFunction: (files) => {
-      // Your file.io upload logic here
       console.log("Uploading to file.io", files);
     },
   },
@@ -24,7 +23,6 @@ const upload_services = {
     name: "sample",
     component: Sample,
     uploadFunction: (files) => {
-      // Your sample upload logic here
       console.log("Uploading to sample service", files);
     },
   },
