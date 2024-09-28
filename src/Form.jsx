@@ -65,17 +65,18 @@ function Form({ files, setFiles, service, setService }) {
             className="opacity-0 absolute inset-0"
           />
         </label>
-
+        <div className="text-center">    
         {isValid && (
           <button
             type="button"
             id="upload-files-button"
             onClick={handleUpload}
-            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 w-max"
           >
             Upload Files
           </button>
         )}
+        </div>
       </form>
 
       <Card files={files} setFiles={setFiles} />
