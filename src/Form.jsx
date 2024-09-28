@@ -54,7 +54,7 @@ function Form({ files, setFiles, service, setService }) {
 
         {service.component && <service.component files={files} />}
 
-        <label className="block border-2 border-salmon relative max-w-[400px] w-[98vw] h-[200px]">
+        <label className="block border-2 border-salmon relative w-[min(400px,99vw)] h-[200px]">
           Drop your files here or click this:
           <input
             type="file"

@@ -6,7 +6,13 @@ function Card({ files, setFiles }) {
   const renderPreview = (file) => {
     switch (file.type.split("/")[0]) {
       case "image":
-        return <img src={URL.createObjectURL(file)} alt={file.name} className="w-80 max-h-24 object-contain" />;
+        return (
+          <img
+            src={URL.createObjectURL(file)}
+            alt={file.name}
+            className="w-80 max-h-24 object-contain"
+          />
+        );
       case "video":
         return (
           <video controls className="w-80 max-h-24">
@@ -27,9 +33,12 @@ function Card({ files, setFiles }) {
   };
 
   return files.length > 0 ? (
-    <div className="flex flex-col items-center space-y-4 mt-4">
+    <div className="flex flex-col items-center space-y-4 mt-4 w-[min(600px,99vw)]">
       {files.map((file) => (
-        <div key={file.name} className="flex items-center border border-gray-300 rounded-lg p-4 w-full shadow-lg bg-white">
+        <div
+          key={file.name}
+          className="flex items-center border border-gray-300 rounded-lg p-4 w-full shadow-lg bg-white"
+        >
           <div className="flex-1">{renderPreview(file)}</div>
           <div className="flex flex-col ml-4">
             <div>Name: {file.name}</div>
